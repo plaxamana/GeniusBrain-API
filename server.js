@@ -1,9 +1,12 @@
 const express = require('express');
+const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors');
 
 const app = express();
-let port = 3000;
+let port = 3001;
 
 app.use(express.json());
+app.use(cors());
 
 const database = {
   users: [
@@ -80,6 +83,19 @@ app.put('/image', (req, res) => {
     res.status(400).json("user not found.")
   }
 })
+
+// bcrypt.hash("bacon", null, null, function(err, hash) {
+//   // Store hash in your password DB.
+// });
+
+// // Load hash from your password DB.
+// bcrypt.compare("bacon", hash, function(err, res) {
+//   // res == true
+// });
+
+// bcrypt.compare("veggies", hash, function(err, res) {
+//   // res = false
+// });
 
 app.listen(port, () => {
   console.log('App is running on port: ' + port)
